@@ -1,8 +1,10 @@
-import DropdownList from "./components/dropdownList";
+import Main from './pages';
 
 function App() {
   return (
-    <div><DropdownList /></div>
+    <div>
+      <Main />
+    </div>
   );
 }
 
