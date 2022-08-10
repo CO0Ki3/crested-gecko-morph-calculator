@@ -67,7 +67,7 @@ function DropdownList({ title }: { title: string }) {
     return (
       !selected &&
       !selectedMorph.some((value) =>
-        item.value.includes(value.includes('_') ? value.split('_')[1] : value),
+        item.value.includes(value.split('_')[1] ?? value),
       ) &&
       item.label!.includes(value)
     );
