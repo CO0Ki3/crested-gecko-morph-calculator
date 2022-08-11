@@ -1,5 +1,5 @@
 import { MultiSelect, SelectItem } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const RECESSIVE_MORPH_LIST = [
   { value: 'axanthic', label: '아잔틱', group: '열성 모프' },
@@ -53,25 +53,23 @@ const SUPER_INCOMPLETE_DOMINANT_MORPH_LIST = [
   { value: 'super_sable', label: '슈퍼 세이블', group: '공우성(슈퍼폼) 모프' },
 ];
 
-function DropdownList({ title }: { title: string }) {
-  const morphList = [
-    ...RECESSIVE_MORPH_LIST,
-    ...HETERO_RECESSIVE_MORPH_LIST,
-    ...INCOMPLETE_DOMINANT_MORPH_LIST,
-    ...SUPER_INCOMPLETE_DOMINANT_MORPH_LIST,
-  ];
+const morphList = [
+  ...RECESSIVE_MORPH_LIST,
+  ...HETERO_RECESSIVE_MORPH_LIST,
+  ...INCOMPLETE_DOMINANT_MORPH_LIST,
+  ...SUPER_INCOMPLETE_DOMINANT_MORPH_LIST,
+];
 
+function DropdownList({ title }: { title: string }) {
   const [selectedMorph, setSelectedMorph] = useState<string[]>([]);
 
-  const filteredData = (value: string, selected: boolean, item: SelectItem) => {
-    return (
-      !selected &&
-      !selectedMorph.some((value) =>
-        item.value.includes(value.split('_')[1] ?? value),
-      ) &&
-      item.label!.includes(value)
-    );
-  };
+  const filteredData = (value: string, selected: boolean, item: SelectItem) =>
+    !selected &&
+    !selectedMorph.some((morphName) =>
+      item.value.includes(morphName.split('_')[1] ?? morphName),
+    ) &&
+    typeof item.label === 'string' &&
+    item.label.includes(value);
 
   return (
     <MultiSelect
@@ -81,7 +79,7 @@ function DropdownList({ title }: { title: string }) {
       nothingFound='No options'
       clearable
       onChange={(value) => setSelectedMorph(value)}
-      filter={(value, selected, item) => filteredData(value, selected, item)}
+      filter={filteredData}
     />
   );
 }

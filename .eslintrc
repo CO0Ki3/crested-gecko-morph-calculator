@@ -1,0 +1,26 @@
+{
+  // "parsor": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "react/require-default-props": "off",
+    "jsx-quotes": "off",
+    "react/react-in-jsx-scope": "off",
+    "function-paren-newline": "off",
+    "react/prop-types": "off",
+    "global-require": "off"
+  }
+}
