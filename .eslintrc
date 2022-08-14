@@ -13,6 +13,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "prettier/prettier": ["off", {}, { "usePrettierrc": true }],
     "import/prefer-default-export": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
@@ -21,6 +22,8 @@
     "react/react-in-jsx-scope": "off",
     "function-paren-newline": "off",
     "react/prop-types": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "react/jsx-wrap-multilines": "off",
+    "object-curly-newline": "off"
   }
 }
