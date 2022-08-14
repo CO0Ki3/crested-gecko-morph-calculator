@@ -1,8 +1,20 @@
 import { Box, Container, Group } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
 
 function Main() {
+  const [maleGenes, setMaleGenes] = useState<string[]>([]);
+  const [femaleGenes, setFemaleGenes] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log(maleGenes);
+  }, [maleGenes]);
+
+  useEffect(() => {
+    console.log(femaleGenes);
+  }, [femaleGenes]);
+
   return (
     <Container
       sx={{
@@ -14,10 +26,10 @@ function Main() {
     >
       <Group position='apart' grow sx={{ marginBottom: '20px' }}>
         <Box sx={{ width: '100%' }}>
-          <DropdownList title='수컷' />
+          <DropdownList title='수컷' setGenes={setMaleGenes} />
         </Box>
         <Box sx={{ width: '100%' }}>
-          <DropdownList title='암컷' />
+          <DropdownList title='암컷' setGenes={setFemaleGenes} />
         </Box>
       </Group>
       <Box sx={{ width: '100%' }}>

@@ -1,5 +1,5 @@
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { MultiSelect, SelectItem } from '@mantine/core';
-import { useState } from 'react';
 
 const RECESSIVE_MORPH_LIST = [
   { value: 'axanthic', label: '아잔틱', group: '열성 모프' },
@@ -60,7 +60,13 @@ const morphList = [
   ...SUPER_INCOMPLETE_DOMINANT_MORPH_LIST,
 ];
 
-function DropdownList({ title }: { title: string }) {
+function DropdownList({
+  title,
+  setGenes,
+}: {
+  title: string;
+  setGenes: Dispatch<SetStateAction<string[]>>;
+}) {
   const [selectedMorph, setSelectedMorph] = useState<string[]>([]);
 
   const filteredData = (value: string, selected: boolean, item: SelectItem) =>
@@ -70,6 +76,10 @@ function DropdownList({ title }: { title: string }) {
     ) &&
     typeof item.label === 'string' &&
     item.label.includes(value);
+
+  useEffect(() => {
+    setGenes(selectedMorph);
+  }, [selectedMorph, setGenes]);
 
   return (
     <MultiSelect
