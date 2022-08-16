@@ -2,6 +2,7 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
+import { changeDihybrid } from '../utils/inheritance';
 
 function Main() {
   const [maleGenes, setMaleGenes] = useState<string[]>([]);
@@ -14,6 +15,10 @@ function Main() {
   useEffect(() => {
     console.log(femaleGenes);
   }, [femaleGenes]);
+
+  useEffect(() => {
+    console.log(changeDihybrid(maleGenes, femaleGenes));
+  }, [maleGenes, femaleGenes]);
 
   return (
     <Container
