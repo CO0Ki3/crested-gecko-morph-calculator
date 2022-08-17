@@ -20,9 +20,9 @@ const morphToDihybrid = {
 };
 
 type TDihybrid = keyof typeof morphToDihybrid;
-type TMorphList = string[] | never[];
+export type TMorphList = string[] | never[];
 
-function filterBlankMorph({
+export function filterBlankMorph({
   pairedMaleGene,
   pairedFemaleGene,
 }: {
@@ -54,8 +54,20 @@ function filterBlankMorph({
   });
 
   return {
-    normalizationNoneMaleGenes,
-    normalizationNonefemaleGenes,
+    maleGenes: normalizationNoneMaleGenes
+      .concat(normalizationNonefemaleGenes)
+      .filter(
+        (item) =>
+          !normalizationNoneMaleGenes.includes(item) ||
+          !normalizationNonefemaleGenes.includes(item),
+      ),
+    femaleGenes: normalizationNonefemaleGenes
+      .concat(normalizationNoneMaleGenes)
+      .filter(
+        (item) =>
+          !normalizationNonefemaleGenes.includes(item) ||
+          !normalizationNoneMaleGenes.includes(item),
+      ),
   };
 }
 
@@ -78,7 +90,6 @@ function inputNoneGenes(
         .map((value) => value.toUpperCase())
         .includes(existFemaleGenes.toUpperCase()),
   );
-  console.log(filteredExistMaleGenes);
   console.log(filteredExistFemaleGenes);
   const wholeMaleGenes = [...maleGenes, ...filteredExistMaleGenes]
     .sort()
@@ -120,14 +131,13 @@ export function changeDihybrid(maleGenes: TMorphList, femaleGenes: TMorphList) {
     ];
   }
 
-  const { normalizationNoneMaleGenes, normalizationNonefemaleGenes } =
-    filterBlankMorph({ pairedMaleGene, pairedFemaleGene });
+  const temp = filterBlankMorph({ pairedMaleGene, pairedFemaleGene });
 
   const wholeGenes = inputNoneGenes(
     pairedMaleGene,
     pairedFemaleGene,
-    normalizationNoneMaleGenes,
-    normalizationNonefemaleGenes,
+    temp.maleGenes,
+    temp.femaleGenes,
   );
 
   return wholeGenes;

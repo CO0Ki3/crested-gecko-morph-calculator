@@ -25,8 +25,8 @@ function DropdownList({
 
   const filteredData = (value: string, selected: boolean, item: SelectItem) =>
     !selected &&
-    !selectedMorph.some((morphName) =>
-      item.value.includes(morphName.split('_')[1] ?? morphName),
+    !selectedMorph.some(
+      (morphName) => item.value.toUpperCase() === morphName.toUpperCase(),
     ) &&
     typeof item.label === 'string' &&
     item.label.includes(value);

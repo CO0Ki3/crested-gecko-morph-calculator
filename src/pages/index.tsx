@@ -2,14 +2,14 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
-import { changeDihybrid } from '../utils/inheritance';
+import { injectNoneGenes, sortGenes } from '../utils/test';
 
-function Main() {
+export default function Main() {
   const [maleGenes, setMaleGenes] = useState<string[]>([]);
   const [femaleGenes, setFemaleGenes] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log(maleGenes);
+    console.log(sortGenes(maleGenes));
   }, [maleGenes]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Main() {
   }, [femaleGenes]);
 
   useEffect(() => {
-    console.log(changeDihybrid(maleGenes, femaleGenes));
+    console.log(injectNoneGenes(maleGenes, femaleGenes));
   }, [maleGenes, femaleGenes]);
 
   return (
@@ -43,5 +43,3 @@ function Main() {
     </Container>
   );
 }
-
-export default Main;
