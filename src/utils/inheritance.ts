@@ -35,18 +35,25 @@ function filterBlankMorph({
   const upperFemaleGenes = pairedFemaleGene.map((femaleValue) =>
     femaleValue.toUpperCase(),
   );
+  console.log(upperMaleGenes);
+  console.log(upperFemaleGenes);
   const wholeGenesSet = new Set([...upperMaleGenes, ...upperFemaleGenes]);
+  console.log(wholeGenesSet);
   const filteredMaleGenes = Array.from(wholeGenesSet).filter((wholevalue) =>
     upperMaleGenes.includes(wholevalue),
   );
   const filteredFemaleGenes = Array.from(wholeGenesSet).filter((wholevalue) =>
     upperFemaleGenes.includes(wholevalue),
   );
-  const normalizationNoneMaleGenes = filteredMaleGenes.map((value) => {
-    return value < 'f' ? value.toUpperCase() : value.toLowerCase();
+  const normalizationNoneMaleGenes = filteredFemaleGenes.map((value) => {
+    return value[0].toUpperCase() < 'F'
+      ? value.toUpperCase()
+      : value.toLowerCase();
   });
-  const normalizationNonefemaleGenes = filteredFemaleGenes.map((value) => {
-    return value < 'f' ? value.toUpperCase() : value.toLowerCase();
+  const normalizationNonefemaleGenes = filteredMaleGenes.map((value) => {
+    return value[0].toUpperCase() < 'F'
+      ? value.toUpperCase()
+      : value.toLowerCase();
   });
 
   return {
@@ -85,19 +92,19 @@ function inputNoneGenes(
   };
 }
 
-export function changeDihybrid(meleGenes: TMorphList, femaleGenes: TMorphList) {
+export function changeDihybrid(maleGenes: TMorphList, femaleGenes: TMorphList) {
   let pairedMaleGene: TMorphList = [];
   let pairedFemaleGene: TMorphList = [];
 
-  if (meleGenes.length !== 0) {
+  if (maleGenes.length !== 0) {
     pairedMaleGene = [
-      ...meleGenes.map((value) => morphToDihybrid[value as TDihybrid]),
+      ...maleGenes.map((value) => morphToDihybrid[value as TDihybrid]),
     ];
   }
 
   if (femaleGenes.length !== 0) {
     pairedFemaleGene = [
-      ...meleGenes.map((value) => morphToDihybrid[value as TDihybrid]),
+      ...femaleGenes.map((value) => morphToDihybrid[value as TDihybrid]),
     ];
   }
 
@@ -105,8 +112,8 @@ export function changeDihybrid(meleGenes: TMorphList, femaleGenes: TMorphList) {
     filterBlankMorph({ pairedMaleGene, pairedFemaleGene });
 
   const wholeGenes = inputNoneGenes(
-    meleGenes,
-    femaleGenes,
+    pairedMaleGene,
+    pairedFemaleGene,
     normalizationNoneMaleGenes,
     normalizationNonefemaleGenes,
   );
