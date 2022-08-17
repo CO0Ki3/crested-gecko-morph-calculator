@@ -35,10 +35,7 @@ function filterBlankMorph({
   const upperFemaleGenes = pairedFemaleGene.map((femaleValue) =>
     femaleValue.toUpperCase(),
   );
-  console.log(upperMaleGenes);
-  console.log(upperFemaleGenes);
   const wholeGenesSet = new Set([...upperMaleGenes, ...upperFemaleGenes]);
-  console.log(wholeGenesSet);
   const filteredMaleGenes = Array.from(wholeGenesSet).filter((wholevalue) =>
     upperMaleGenes.includes(wholevalue),
   );
@@ -68,7 +65,22 @@ function inputNoneGenes(
   normalizationNoneMaleGenes: TMorphList,
   normalizationNonefemaleGenes: TMorphList,
 ) {
-  const wholeMaleGenes = [...maleGenes, ...normalizationNoneMaleGenes]
+  const filteredExistMaleGenes = normalizationNoneMaleGenes.filter(
+    (existMaleGenes) =>
+      maleGenes
+        .map((value) => value.toUpperCase())
+        .includes(existMaleGenes.toUpperCase()),
+  );
+
+  const filteredExistFemaleGenes = normalizationNonefemaleGenes.filter(
+    (existFemaleGenes) =>
+      femaleGenes
+        .map((value) => value.toUpperCase())
+        .includes(existFemaleGenes.toUpperCase()),
+  );
+  console.log(filteredExistMaleGenes);
+  console.log(filteredExistFemaleGenes);
+  const wholeMaleGenes = [...maleGenes, ...filteredExistMaleGenes]
     .sort()
     .sort((prev, cur) => {
       const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
@@ -77,7 +89,7 @@ function inputNoneGenes(
       return 0;
     });
 
-  const wholeFemaleGenes = [...femaleGenes, ...normalizationNonefemaleGenes]
+  const wholeFemaleGenes = [...femaleGenes, ...filteredExistFemaleGenes]
     .sort()
     .sort((prev, cur) => {
       const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
