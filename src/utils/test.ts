@@ -1,4 +1,4 @@
-import { TMorphList } from './inheritance';
+export type TMorphList = string[] | never[];
 
 export function sortGenes(genes: TMorphList) {
   if (genes.length === 0) {
