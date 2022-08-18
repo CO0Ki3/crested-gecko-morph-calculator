@@ -2,6 +2,7 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
+// import { probabilityMaper } from '../utils/inheritance';
 import { injectNoneGenes } from '../utils/test';
 
 export default function Main() {
@@ -15,34 +16,35 @@ export default function Main() {
   // }, [maleGenes, femaleGenes]);
 
   useEffect(() => {
-    setWholeMaleGenes([
-      ...maleGenes,
-      ...injectNoneGenes(maleGenes, femaleGenes).noneMaleGenes,
-    ]);
-    setWholeFemaleGenes([
-      ...femaleGenes,
-      ...injectNoneGenes(maleGenes, femaleGenes).noneFemaleGenes,
-    ]);
+    setWholeMaleGenes(
+      [
+        ...maleGenes,
+        ...injectNoneGenes(maleGenes, femaleGenes).noneMaleGenes,
+      ].sort((prev, cur) => {
+        const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
+        if (upperPrev > upperCur) return 1;
+        if (upperPrev < upperCur) return -1;
+        return 0;
+      }),
+    );
+    setWholeFemaleGenes(
+      [
+        ...femaleGenes,
+        ...injectNoneGenes(maleGenes, femaleGenes).noneFemaleGenes,
+      ].sort((prev, cur) => {
+        const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
+        if (upperPrev > upperCur) return 1;
+        if (upperPrev < upperCur) return -1;
+        return 0;
+      }),
+    );
   }, [maleGenes, femaleGenes]);
 
-  useEffect(() => {
-    console.log(
-      wholeMaleGenes.sort((prev, cur) => {
-        const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
-        if (upperPrev > upperCur) return 1;
-        if (upperPrev < upperCur) return -1;
-        return 0;
-      }),
-    );
-    console.log(
-      wholeFemaleGenes.sort((prev, cur) => {
-        const [upperPrev, upperCur] = [prev.toUpperCase(), cur.toUpperCase()];
-        if (upperPrev > upperCur) return 1;
-        if (upperPrev < upperCur) return -1;
-        return 0;
-      }),
-    );
-  }, [wholeFemaleGenes, wholeMaleGenes]);
+  // useEffect(() => {
+  //   if (wholeFemaleGenes.length !== 0 && wholeMaleGenes.length !== 0) {
+  //     console.log(probabilityMaper(wholeFemaleGenes[0], wholeMaleGenes[0]));
+  //   }
+  // }, [wholeFemaleGenes, wholeMaleGenes]);
 
   return (
     <Container

@@ -26,6 +26,8 @@
     "react/jsx-wrap-multilines": "off",
     "object-curly-newline": "off",
     "linebreak-style": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-bitwise": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }
