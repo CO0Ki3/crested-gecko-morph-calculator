@@ -18,12 +18,20 @@ export function injectNoneGenes(
 ) {
   const upperMaleGenes = maleGenes.map((value) => value.toUpperCase());
   const upperFemaleGenes = femaleGenes.map((value) => value.toUpperCase());
-  const noneMaleGenes = femaleGenes.filter(
-    (value) => !upperMaleGenes.includes(value.toUpperCase()),
-  );
-  const noneFemaleGenes = maleGenes.filter(
-    (value) => !upperFemaleGenes.includes(value.toUpperCase()),
-  );
+  const noneMaleGenes = femaleGenes
+    .filter((value) => !upperMaleGenes.includes(value.toUpperCase()))
+    .map((value) => {
+      return value[0].toUpperCase() < 'F'
+        ? value.toUpperCase()
+        : value.toLowerCase();
+    });
+  const noneFemaleGenes = maleGenes
+    .filter((value) => !upperFemaleGenes.includes(value.toUpperCase()))
+    .map((value) => {
+      return value[0].toUpperCase() < 'F'
+        ? value.toUpperCase()
+        : value.toLowerCase();
+    });
 
   return {
     noneMaleGenes,

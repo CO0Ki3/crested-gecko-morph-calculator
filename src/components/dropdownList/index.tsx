@@ -33,7 +33,6 @@ function DropdownList({
 
   useEffect(() => {
     setGenes(selectedMorph);
-    console.log(selectedMorph);
   }, [selectedMorph, setGenes]);
 
   return (
