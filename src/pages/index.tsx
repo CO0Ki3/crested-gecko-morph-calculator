@@ -2,6 +2,7 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
+import { inheritance, temp } from '../utils/inheritance';
 // import { probabilityMaper } from '../utils/inheritance';
 import { injectNoneGenes } from '../utils/test';
 
@@ -40,11 +41,12 @@ export default function Main() {
     );
   }, [maleGenes, femaleGenes]);
 
-  // useEffect(() => {
-  //   if (wholeFemaleGenes.length !== 0 && wholeMaleGenes.length !== 0) {
-  //     console.log(probabilityMaper(wholeFemaleGenes[0], wholeMaleGenes[0]));
-  //   }
-  // }, [wholeFemaleGenes, wholeMaleGenes]);
+  useEffect(() => {
+    console.log(inheritance(wholeMaleGenes, wholeFemaleGenes));
+  }, [wholeFemaleGenes, wholeMaleGenes]);
+  useEffect(() => {
+    temp();
+  }, []);
 
   return (
     <Container
