@@ -28,5 +28,6 @@
     "linebreak-style": "off",
     "arrow-body-style": "off",
     "no-bitwise": "off",
+    "@typescript-eslint/indent": "off"
   }
 }

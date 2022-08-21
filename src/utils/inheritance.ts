@@ -1,3 +1,4 @@
+import { LabelT, VALUE_TO_LABLE } from './morph';
 import { TMorphList } from './test';
 
 function geneTypeChecker(gene: string) {
@@ -11,42 +12,79 @@ function geneTypeChecker(gene: string) {
 }
 
 export function probabilityMaper(maleGene: string, femaleGene: string) {
-  const maleBits = geneTypeChecker(maleGene); // 1
-  const femaleBits = geneTypeChecker(femaleGene); // 1
+  const maleBits = geneTypeChecker(maleGene);
+  const femaleBits = geneTypeChecker(femaleGene);
   const primaryType = maleGene[0];
   if ((maleBits & femaleBits) === 0b00) {
     if ((maleBits | femaleBits) === 0b00) {
       return [
-        { [`${primaryType.toUpperCase()}${primaryType.toUpperCase()}`]: 1 },
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toUpperCase()}`,
+          value: 1,
+        },
       ];
     }
     if ((maleBits | femaleBits) === 0b01) {
       return [
-        { [`${primaryType.toUpperCase()}${primaryType.toUpperCase()}`]: 0.5 },
-        { [`${primaryType.toUpperCase()}${primaryType.toLowerCase()}`]: 0.5 },
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toUpperCase()}`,
+          value: 0.5,
+        },
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toLowerCase()}`,
+          value: 0.5,
+        },
+      ];
+    }
+    if ((maleBits | femaleBits) === 0b11) {
+      return [
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toLowerCase()}`,
+          value: 1,
+        },
       ];
     }
   }
   if ((maleBits & femaleBits) === 0b01) {
     if ((maleBits | femaleBits) === 0b01) {
       return [
-        { [`${primaryType.toUpperCase()}${primaryType.toUpperCase()}`]: 0.25 },
-        { [`${primaryType.toUpperCase()}${primaryType.toLowerCase()}`]: 0.5 },
-        { [`${primaryType.toLowerCase()}${primaryType.toLowerCase()}`]: 0.25 },
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toUpperCase()}`,
+          value: 0.25,
+        },
+        {
+          gene: `${primaryType.toUpperCase()}${primaryType.toLowerCase()}`,
+          value: 0.5,
+        },
+        {
+          gene: `${primaryType.toLowerCase()}${primaryType.toLowerCase()}`,
+          value: 0.25,
+        },
       ];
     }
     return [
-      { [`${primaryType.toUpperCase()}${primaryType.toLowerCase()}`]: 0.5 },
-      { [`${primaryType.toLowerCase()}${primaryType.toLowerCase()}`]: 0.5 },
+      {
+        gene: `${primaryType.toUpperCase()}${primaryType.toLowerCase()}`,
+        value: 0.5,
+      },
+      {
+        gene: `${primaryType.toLowerCase()}${primaryType.toLowerCase()}`,
+        value: 0.5,
+      },
     ];
   }
-  return [{ [`${primaryType.toLowerCase()}${primaryType.toLowerCase()}`]: 1 }];
+  return [
+    {
+      gene: `${primaryType.toLowerCase()}${primaryType.toLowerCase()}`,
+      value: 1,
+    },
+  ];
 }
 
-export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
-  if (maleGenes.length === 0 && femaleGenes.length === 0) {
-    return ['wow'];
-  }
+export function wholeProbabilityFilter(
+  maleGenes: TMorphList,
+  femaleGenes: TMorphList,
+) {
   const wholeProbability = maleGenes.map((value, i) =>
     probabilityMaper(value, femaleGenes[i]),
   );
@@ -54,24 +92,22 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   return wholeProbability;
 }
 
-export function temp() {
-  const p = [
-    [
-      { gene: 'Ff', value: 0.5 },
-      { gene: 'ff', value: 0.5 },
-    ],
-    [
-      { gene: 'GG', value: 0.25 },
-      { gene: 'Gg', value: 0.5 },
-      { gene: 'gg', value: 0.25 },
-    ],
-  ];
+export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
+  if (maleGenes.length === 0 && femaleGenes.length === 0) {
+    return ['wow'];
+  }
+
+  const p = wholeProbabilityFilter(maleGenes, femaleGenes);
 
   const merge = (
     a: { gene: string; value: number }[],
     b: { gene: string; value: number }[],
   ) => {
-    if (a.length === 0) return b;
+    if (a.length === 0) {
+      return [
+        { gene: `${VALUE_TO_LABLE[b[0].gene as LabelT]} `, value: b[0].value },
+      ];
+    }
     return a.reduce(
       (
         acc: { gene: string; value: number }[],
@@ -79,7 +115,7 @@ export function temp() {
       ) => {
         b.forEach((bItem) =>
           acc.push({
-            gene: aItem.gene + bItem.gene,
+            gene: `${aItem.gene}${VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''} `,
             value: aItem.value * bItem.value,
           }),
         );
@@ -97,5 +133,5 @@ export function temp() {
     return result;
   };
 
-  console.log(totalMerge());
+  return totalMerge();
 }

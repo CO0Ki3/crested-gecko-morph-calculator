@@ -2,8 +2,6 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
-import { inheritance, temp } from '../utils/inheritance';
-// import { probabilityMaper } from '../utils/inheritance';
 import { injectNoneGenes } from '../utils/test';
 
 export default function Main() {
@@ -11,6 +9,13 @@ export default function Main() {
   const [femaleGenes, setFemaleGenes] = useState<string[]>([]);
   const [wholeMaleGenes, setWholeMaleGenes] = useState<string[]>([]);
   const [wholeFemaleGenes, setWholeFemaleGenes] = useState<string[]>([]);
+  const [result, setResult] = useState<
+    | string[]
+    | {
+        gene: string;
+        value: number;
+      }[]
+  >([]);
 
   // useEffect(() => {
   //   setDifferenceGenes(injectNoneGenes(maleGenes, femaleGenes));
@@ -42,11 +47,8 @@ export default function Main() {
   }, [maleGenes, femaleGenes]);
 
   useEffect(() => {
-    console.log(inheritance(wholeMaleGenes, wholeFemaleGenes));
-  }, [wholeFemaleGenes, wholeMaleGenes]);
-  useEffect(() => {
-    temp();
-  }, []);
+    console.log(result);
+  }, [result]);
 
   return (
     <Container
@@ -66,7 +68,11 @@ export default function Main() {
         </Box>
       </Group>
       <Box sx={{ width: '100%' }}>
-        <CalcButton />
+        <CalcButton
+          wholeMaleGenes={wholeMaleGenes}
+          wholeFemaleGenes={wholeFemaleGenes}
+          setResult={setResult}
+        />
       </Box>
     </Container>
   );

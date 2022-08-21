@@ -43,3 +43,26 @@ export const SUPER_INCOMPLETE_DOMINANT_MORPH_LIST = [
   },
   { value: 'II', label: '슈퍼 세이블', group: '공우성(슈퍼폼) 모프' },
 ];
+
+export const VALUE_TO_LABLE = {
+  aa: '아잔틱',
+  bb: '패턴리스',
+  cc: '팬텀',
+  dd: '슈퍼 스트라이프',
+  ee: '블루 아이',
+  Aa: '헷 아잔틱',
+  Bb: '헷 패턴리스',
+  Cc: '헷 팬텀',
+  Dd: '헷 슈퍼 스트라이프',
+  Ee: '헷 블루 아이',
+  Ff: '릴리 화이트',
+  Gg: '카푸치노',
+  Hh: '소프트 스케일',
+  Ii: '세이블',
+  FF: '슈퍼 릴리 화이트',
+  GG: '슈퍼 카푸치노',
+  HH: '슈퍼 소프트 스케일',
+  II: '슈퍼 세이블',
+};
+
+export type LabelT = keyof typeof VALUE_TO_LABLE;
