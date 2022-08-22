@@ -2,7 +2,7 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
-import { injectNoneGenes } from '../utils/test';
+import { injectNoneGenes } from '../utils/inheritance';
 
 export default function Main() {
   const [maleGenes, setMaleGenes] = useState<string[]>([]);
