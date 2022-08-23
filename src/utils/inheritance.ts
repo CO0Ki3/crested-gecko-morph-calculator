@@ -126,31 +126,54 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   }
 
   const p = wholeProbabilityFilter(maleGenes, femaleGenes);
+  console.log(p);
+
+  // const merge = (
+  //   a: { gene: string; value: number }[],
+  //   b: { gene: string; value: number }[],
+  // ) => {
+  //   console.log(b);
+  //   if (a.length === 0) {
+  //     return [
+  //       { gene: `${VALUE_TO_LABLE[b[0].gene as LabelT]} `, value: b[0].value },
+  //     ];
+  //   }
+  //   return a.reduce(
+  //     (
+  //       acc: { gene: string; value: number }[],
+  //       aItem: { gene: string; value: number },
+  //     ) => {
+  //       b.forEach((bItem) =>
+  //         acc.push({
+  //           gene: `${aItem.gene}${VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''} `,
+  //           value: aItem.value * bItem.value,
+  //         }),
+  //       );
+  //       return acc;
+  //     },
+  //     [],
+  //   );
+  // };
 
   const merge = (
     a: { gene: string; value: number }[],
     b: { gene: string; value: number }[],
   ) => {
     if (a.length === 0) {
-      return [
-        { gene: `${VALUE_TO_LABLE[b[0].gene as LabelT]} `, value: b[0].value },
-      ];
+      return b;
     }
-    return a.reduce(
-      (
-        acc: { gene: string; value: number }[],
-        aItem: { gene: string; value: number },
-      ) => {
-        b.forEach((bItem) =>
-          acc.push({
-            gene: `${aItem.gene}${VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''} `,
-            value: aItem.value * bItem.value,
-          }),
-        );
-        return acc;
-      },
-      [],
-    );
+    return a.reduce((acc, aItem) => {
+      b.forEach((bItem) =>
+        // @ts-ignore
+        acc.push({
+          // @ts-ignore
+          gene: aItem.gene + bItem.gene,
+          // @ts-ignore
+          value: aItem.value * bItem.value,
+        }),
+      );
+      return acc;
+    }, []);
   };
 
   const totalMerge = () => {

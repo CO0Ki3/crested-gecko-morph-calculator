@@ -28,6 +28,7 @@
     "linebreak-style": "off",
     "arrow-body-style": "off",
     "no-bitwise": "off",
-    "@typescript-eslint/indent": "off"
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
