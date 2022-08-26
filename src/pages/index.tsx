@@ -12,7 +12,7 @@ export default function Main() {
   const [result, setResult] = useState<
     | string[]
     | {
-        gene: string;
+        gene: string[];
         value: number;
       }[]
   >([]);

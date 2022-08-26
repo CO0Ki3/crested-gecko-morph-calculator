@@ -13,7 +13,7 @@ function CalcButton({
     SetStateAction<
       | string[]
       | {
-          gene: string;
+          gene: string[];
           value: number;
         }[]
     >

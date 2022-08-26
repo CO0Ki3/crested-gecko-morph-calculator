@@ -128,22 +128,23 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   const p = wholeProbabilityFilter(maleGenes, femaleGenes);
 
   const merge = (
-    a: { gene: string; value: number }[],
+    a: { gene: string[]; value: number }[],
     b: { gene: string; value: number }[],
   ) => {
     if (a.length === 0) {
-      return [
-        { gene: `${VALUE_TO_LABLE[b[0].gene as LabelT]} `, value: b[0].value },
-      ];
+      return b.map((value) => ({
+        gene: [VALUE_TO_LABLE[value.gene as LabelT] ?? ''],
+        value: value.value,
+      }));
     }
     return a.reduce(
       (
-        acc: { gene: string; value: number }[],
-        aItem: { gene: string; value: number },
+        acc: { gene: string[]; value: number }[],
+        aItem: { gene: string[]; value: number },
       ) => {
         b.forEach((bItem) =>
           acc.push({
-            gene: `${aItem.gene}${VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''} `,
+            gene: [...aItem.gene, VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''],
             value: aItem.value * bItem.value,
           }),
         );
@@ -154,12 +155,20 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   };
 
   const totalMerge = () => {
-    let result: { gene: string; value: number }[] | never[] = [];
+    let result: { gene: string[]; value: number }[] | never[] = [];
     p.forEach((group) => {
       result = merge(result, group);
     });
     return result;
   };
 
-  return totalMerge();
+  const sortedTotalMerge = totalMerge().map((genes) => ({
+    gene: genes.gene
+      .filter((x) => x)
+      .filter((x) => !x.includes('헷'))
+      .concat(genes.gene.filter((x) => x.includes('헷'))),
+    value: genes.value,
+  }));
+
+  return sortedTotalMerge;
 }
