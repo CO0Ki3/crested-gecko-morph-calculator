@@ -164,8 +164,8 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
 
   const sortedTotalMerge = totalMerge().map((genes) => ({
     gene: genes.gene
-      .filter((x) => x)
-      .filter((x) => !x.includes('헷'))
+      .filter((element) => element)
+      .filter((geneItem) => !geneItem.includes('헷'))
       .concat(genes.gene.filter((x) => x.includes('헷'))),
     value: genes.value,
   }));
