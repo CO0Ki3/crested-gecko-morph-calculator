@@ -28,6 +28,8 @@
     "linebreak-style": "off",
     "arrow-body-style": "off",
     "no-bitwise": "off",
-    "@typescript-eslint/indent": "off"
+    "@typescript-eslint/indent": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-indent": "off"
   }
 }

@@ -11,10 +11,9 @@ function CalcButton({
   wholeFemaleGenes: string[];
   setResult: Dispatch<
     SetStateAction<
-      | string[]
       | {
           gene: string[];
-          value: number;
+          value: string;
         }[]
     >
   >;

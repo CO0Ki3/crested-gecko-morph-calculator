@@ -2,6 +2,7 @@ import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
+import Result from '../components/Result';
 import { injectNoneGenes } from '../utils/inheritance';
 
 export default function Main() {
@@ -10,10 +11,9 @@ export default function Main() {
   const [wholeMaleGenes, setWholeMaleGenes] = useState<string[]>([]);
   const [wholeFemaleGenes, setWholeFemaleGenes] = useState<string[]>([]);
   const [result, setResult] = useState<
-    | string[]
     | {
         gene: string[];
-        value: number;
+        value: string;
       }[]
   >([]);
 
@@ -46,10 +46,6 @@ export default function Main() {
     );
   }, [maleGenes, femaleGenes]);
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
-
   return (
     <Container
       sx={{
@@ -74,6 +70,7 @@ export default function Main() {
           setResult={setResult}
         />
       </Box>
+      <Result results={result} />
     </Container>
   );
 }
