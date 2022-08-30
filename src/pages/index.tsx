@@ -22,6 +22,8 @@ export default function Main() {
   // }, [maleGenes, femaleGenes]);
 
   useEffect(() => {
+    console.log(maleGenes);
+    console.log(femaleGenes);
     setWholeMaleGenes(
       [
         ...maleGenes,
@@ -70,7 +72,11 @@ export default function Main() {
           setResult={setResult}
         />
       </Box>
-      <Result results={result} />
+      <Result
+        results={result}
+        maleGenes={maleGenes}
+        femaleGenes={femaleGenes}
+      />
     </Container>
   );
 }

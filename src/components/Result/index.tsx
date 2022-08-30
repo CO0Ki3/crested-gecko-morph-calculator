@@ -2,12 +2,17 @@ import { Fragment } from 'react';
 
 function Result({
   results,
+  maleGenes,
+  femaleGenes,
 }: {
   results: {
     gene: string[];
     value: string;
   }[];
+  maleGenes: string[];
+  femaleGenes: string[];
 }) {
+  console.log(maleGenes, femaleGenes);
   return results.length === 0 ? (
     <>노말 100%</>
   ) : (
