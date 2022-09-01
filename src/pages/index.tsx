@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
 import Result from '../components/Result';
+import ParentsList from '../components/Result/items/parents/ParentsList';
+import useGenesStore from '../store/store';
 import { injectNoneGenes } from '../utils/inheritance';
 
 export default function Main() {
@@ -17,13 +19,11 @@ export default function Main() {
       }[]
   >([]);
 
-  // useEffect(() => {
-  //   setDifferenceGenes(injectNoneGenes(maleGenes, femaleGenes));
-  // }, [maleGenes, femaleGenes]);
+  const { setMaleGene, setFemaleGene } = useGenesStore();
 
   useEffect(() => {
-    console.log(maleGenes);
-    console.log(femaleGenes);
+    setMaleGene(maleGenes);
+    setFemaleGene(femaleGenes);
     setWholeMaleGenes(
       [
         ...maleGenes,
@@ -46,7 +46,7 @@ export default function Main() {
         return 0;
       }),
     );
-  }, [maleGenes, femaleGenes]);
+  }, [maleGenes, femaleGenes, setMaleGene, setFemaleGene]);
 
   return (
     <Container
@@ -77,6 +77,7 @@ export default function Main() {
         maleGenes={maleGenes}
         femaleGenes={femaleGenes}
       />
+      <ParentsList />
     </Container>
   );
 }

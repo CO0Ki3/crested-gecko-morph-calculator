@@ -44,7 +44,7 @@ export const SUPER_INCOMPLETE_DOMINANT_MORPH_LIST = [
   { value: 'II', label: '슈퍼 세이블', group: '공우성(슈퍼폼) 모프' },
 ];
 
-export const VALUE_TO_LABLE = {
+export const VALUE_TO_LABEL = {
   aa: '아잔틱',
   bb: '패턴리스',
   cc: '팬텀',
@@ -65,4 +65,4 @@ export const VALUE_TO_LABLE = {
   II: '슈퍼 세이블',
 };
 
-export type LabelT = keyof typeof VALUE_TO_LABLE;
+export type LabelT = keyof typeof VALUE_TO_LABEL;

@@ -1,4 +1,4 @@
-import { LabelT, VALUE_TO_LABLE } from './morph';
+import { LabelT, VALUE_TO_LABEL } from './morph';
 
 export type TMorphList = string[] | never[];
 
@@ -120,6 +120,19 @@ export function wholeProbabilityFilter(
   return wholeProbability;
 }
 
+export function koreanSortFilter(genes: string[]) {
+  return genes
+    .filter((dominants) => dominants.includes('슈퍼'))
+    .concat(genes.filter((otherItem) => !otherItem.includes('슈퍼')))
+    .filter((hetero) => !hetero.includes('헷'))
+    .concat(genes.filter((x) => x.includes('헷')))
+    .filter((wholeGene) => wholeGene !== '');
+}
+
+export function valueToLabel(rawGenes: string[]) {
+  return rawGenes.map((raw) => VALUE_TO_LABEL[raw as LabelT]);
+}
+
 export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   if (maleGenes.length === 0 && femaleGenes.length === 0) {
     return [];
@@ -133,7 +146,7 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   ) => {
     if (a.length === 0) {
       return b.map((value) => ({
-        gene: [VALUE_TO_LABLE[value.gene as LabelT] ?? ''],
+        gene: [VALUE_TO_LABEL[value.gene as LabelT] ?? ''],
         value: value.value,
       }));
     }
@@ -144,7 +157,7 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
       ) => {
         b.forEach((bItem) =>
           acc.push({
-            gene: [...aItem.gene, VALUE_TO_LABLE[bItem.gene as LabelT] ?? ''],
+            gene: [...aItem.gene, VALUE_TO_LABEL[bItem.gene as LabelT] ?? ''],
             value: aItem.value * bItem.value,
           }),
         );
@@ -163,12 +176,7 @@ export function inheritance(maleGenes: TMorphList, femaleGenes: TMorphList) {
   };
 
   const sortedTotalMerge = totalMerge().map((genes) => ({
-    gene: genes.gene
-      .filter((dominants) => dominants.includes('슈퍼'))
-      .concat(genes.gene.filter((otherItem) => !otherItem.includes('슈퍼')))
-      .filter((geneItem) => !geneItem.includes('헷'))
-      .concat(genes.gene.filter((x) => x.includes('헷')))
-      .filter((element) => element !== ''),
+    gene: koreanSortFilter(genes.gene),
     value: `${genes.value * 100}%`,
   }));
 
