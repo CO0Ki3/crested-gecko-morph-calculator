@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
 import Result from '../components/Result';
-import ParentsList from '../components/Result/items/parents/ParentsList';
 import useGenesStore from '../store/store';
 import { injectNoneGenes } from '../utils/inheritance';
 
@@ -12,18 +11,10 @@ export default function Main() {
   const [femaleGenes, setFemaleGenes] = useState<string[]>([]);
   const [wholeMaleGenes, setWholeMaleGenes] = useState<string[]>([]);
   const [wholeFemaleGenes, setWholeFemaleGenes] = useState<string[]>([]);
-  const [result, setResult] = useState<
-    | {
-        gene: string[];
-        value: string;
-      }[]
-  >([]);
 
-  const { setMaleGene, setFemaleGene } = useGenesStore();
+  const { result, setMaleGene, setFemaleGene, setResult } = useGenesStore();
 
   useEffect(() => {
-    setMaleGene(maleGenes);
-    setFemaleGene(femaleGenes);
     setWholeMaleGenes(
       [
         ...maleGenes,
@@ -46,14 +37,14 @@ export default function Main() {
         return 0;
       }),
     );
-  }, [maleGenes, femaleGenes, setMaleGene, setFemaleGene]);
+  }, [maleGenes, femaleGenes]);
 
   return (
     <Container
       sx={{
-        width: '65%',
+        width: '68%',
         boxShadow: '0 0 2px 1px rgb(0 0 0 / 10%)',
-        padding: '30px',
+        padding: result ? '30px 30px 0 30px' : '30px',
         borderRadius: '8px',
       }}
     >
@@ -69,15 +60,14 @@ export default function Main() {
         <CalcButton
           wholeMaleGenes={wholeMaleGenes}
           wholeFemaleGenes={wholeFemaleGenes}
+          onClick={() => {
+            setMaleGene(maleGenes);
+            setFemaleGene(femaleGenes);
+          }}
           setResult={setResult}
         />
       </Box>
-      <Result
-        results={result}
-        maleGenes={maleGenes}
-        femaleGenes={femaleGenes}
-      />
-      <ParentsList />
+      <Result />
     </Container>
   );
 }
