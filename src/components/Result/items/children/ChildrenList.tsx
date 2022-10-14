@@ -1,11 +1,15 @@
 import { Button } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useGenesStore from '../../../../store/store';
 import ChildrenItem from './ChildrenItem';
 
 function ChildrenList() {
   const { result } = useGenesStore();
   const [isViewMore, setIsViewMore] = useState(false);
+
+  useEffect(() => {
+    setIsViewMore(false);
+  }, [result]);
 
   return (
     <>
