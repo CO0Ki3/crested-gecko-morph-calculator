@@ -7,5 +7,6 @@
   "trailingComma": "all",
   "jsxSingleQuote": true,
   "bracketSameLine": false,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "quoteProps": "preserve"
 }
