@@ -31,6 +31,7 @@
     "@typescript-eslint/indent": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-indent": "off",
-    "no-spaced-func": "off"
+    "no-spaced-func": "off",
+    "quote-props": ["error", "consistent-as-needed"]
   }
 }
