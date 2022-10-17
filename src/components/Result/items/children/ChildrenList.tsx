@@ -1,7 +1,7 @@
 import { ArcElement, Chart, Legend, Tooltip } from 'chart.js';
+import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Button } from '@mantine/core';
-import { useEffect, useState } from 'react';
 import useGenesStore from '../../../../store/store';
 import ChildrenItem from './ChildrenItem';
 
@@ -10,35 +10,51 @@ function ChildrenList() {
   const [isViewMore, setIsViewMore] = useState(false);
   Chart.register(ArcElement, Tooltip, Legend);
 
+  const [labels, setLables] = useState<string[]>([]);
+  const [data, setData] = useState<number[]>([]);
+  const [color, setColor] = useState<string[]>([]);
+  Chart.register(ArcElement, Tooltip, Legend);
+
   useEffect(() => {
     setIsViewMore(false);
+    if (typeof result === 'undefined') return;
+    if (result.length === 0) {
+      setLables(['노말']);
+      setData([100]);
+      setColor(['rgba(255, 99, 132']);
+    } else {
+      setLables(
+        result
+          .filter((trait) => Number.parseFloat(trait.value) > 3)
+          .map((filteredTrait) => {
+            return filteredTrait.gene.length === 0
+              ? '노말'
+              : filteredTrait.gene.join(' ');
+          }),
+      );
+      setData(result.map((trait) => Number.parseFloat(trait.value)));
+      setColor(
+        result.map(
+          () =>
+            `rgba(${Math.floor(Math.random() * (255 + 1))}, ${Math.floor(
+              Math.random() * (255 + 1),
+            )}, ${Math.floor(Math.random() * (255 + 1))}`,
+        ),
+      );
+    }
   }, [result]);
 
   return (
     <>
       <Doughnut
+        style={{ marginTop: '18px' }}
         data={{
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels,
           datasets: [
             {
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-              ],
+              data,
+              backgroundColor: color.map((bgColor) => `${bgColor}, 0.3)`),
+              borderColor: color.map((borderColor) => `${borderColor}, 1)`),
               borderWidth: 1,
             },
           ],
