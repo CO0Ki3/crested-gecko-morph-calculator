@@ -122,23 +122,37 @@ function ParentItem({ genes }: { genes: string[] }) {
         </Box>
       </Card.Section>
 
-      {genes.length === 0
-        ? '노말'
-        : genes.map((value) => (
-            <Badge
-              variant='gradient'
-              gradient={BADGE_BACKGROUND_COLORS[value]}
-              sx={{
-                marginTop: '10px',
-                marginBottom: '-10px',
-                marginRight: '5px',
-              }}
-              size='lg'
-              key={`${value}`}
-            >
-              {value}
-            </Badge>
-          ))}
+      {genes.length === 0 ? (
+        <Badge
+          variant='gradient'
+          gradient={BADGE_BACKGROUND_COLORS['노말']}
+          sx={{
+            marginTop: '10px',
+            marginBottom: '-10px',
+            marginRight: '5px',
+          }}
+          size='lg'
+          key='노말'
+        >
+          노말
+        </Badge>
+      ) : (
+        genes.map((value) => (
+          <Badge
+            variant='gradient'
+            gradient={BADGE_BACKGROUND_COLORS[value]}
+            sx={{
+              marginTop: '10px',
+              marginBottom: '-10px',
+              marginRight: '5px',
+            }}
+            size='lg'
+            key={`${value}`}
+          >
+            {value}
+          </Badge>
+        ))
+      )}
     </Card>
   );
 }
