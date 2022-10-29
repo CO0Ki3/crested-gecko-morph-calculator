@@ -69,7 +69,7 @@ function ChildrenList() {
           marginBottom: `${isViewMore ? 0 : '30px'}`,
         }}
       >
-        더보기
+        {isViewMore ? '닫기' : '더보기'}
       </Button>
       {typeof result === 'undefined'
         ? null
