@@ -1,6 +1,7 @@
 import { AppShell, Header } from '@mantine/core';
 import HeaderContents from './components/header';
 import Main from './pages';
+import DescriptionList from './pages/description';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         </Header>
       }
     >
+      <DescriptionList />
       <Main />
     </AppShell>
   );
