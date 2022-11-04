@@ -117,9 +117,7 @@ function ParentItem({ genes }: { genes: string[] }) {
             backgroundColor: 'azure',
             marginBottom: '10px',
           }}
-        >
-          여긴 부모 사진
-        </Box>
+        />
       </Card.Section>
 
       {genes.length === 0 ? (
