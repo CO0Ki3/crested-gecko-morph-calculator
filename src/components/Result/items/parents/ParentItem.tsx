@@ -1,6 +1,7 @@
-import { Badge, Card, Box, MantineGradient } from '@mantine/core';
-
-// MantineGradient
+import { Badge, Card, Box, MantineGradient, Image } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import Normal from '../../../../static/노말.jpg';
+import flags from './flags';
 
 const BADGE_BACKGROUND_COLORS: { [key: string]: MantineGradient } = {
   '아잔틱': {
@@ -101,6 +102,18 @@ const BADGE_BACKGROUND_COLORS: { [key: string]: MantineGradient } = {
 };
 
 function ParentItem({ genes }: { genes: string[] }) {
+  const [imageName, setImageName] = useState<string>('');
+  useEffect(() => {
+    if (genes.length === 0) return;
+    setImageName(
+      genes
+        .filter((gene) => !gene.includes('헷'))
+        .sort()
+        .join('')
+        .split(' ')
+        .join(''),
+    );
+  }, [genes]);
   return (
     <Card
       shadow='sm'
@@ -114,12 +127,20 @@ function ParentItem({ genes }: { genes: string[] }) {
           sx={{
             height: '300px',
             width: '100%',
-            backgroundColor: 'azure',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             marginBottom: '10px',
           }}
-        />
+        >
+          <Box sx={{ width: '100%', maxHeight: '300px' }}>
+            <Image
+              src={genes.length === 0 ? Normal : flags[imageName]}
+              sx={{ width: '101%' }}
+            />
+          </Box>
+        </Box>
       </Card.Section>
-
       {genes.length === 0 ? (
         <Badge
           variant='gradient'
