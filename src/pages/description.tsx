@@ -5,17 +5,16 @@ function DescriptionList() {
     <Container>
       <List>
         <List.Item style={{ marginBottom: '12px' }}>
-          <span style={{ fontWeight: 'bold', color: '#228be6' }}>
-            부모의 유전 조합
-          </span>
-          을 이용하여 확률을 계산해줍니다.
-        </List.Item>
-        <List.Item style={{ marginBottom: '12px' }}>
           해당 계산기에서 &quot;모프&quot;란{' '}
           <span style={{ fontWeight: 'bold', color: '#228be6' }}>
             대립유전자로 유전되는 것
           </span>
           을 의미합니다. 할리퀸, 핀, 월 등은 계산할 수 없습니다.
+        </List.Item>
+        <List.Item style={{ marginBottom: '12px' }}>
+          값을 넣지 않으면{' '}
+          <span style={{ fontWeight: 'bold', color: '#228be6' }}>노말</span>로
+          계산됩니다.
         </List.Item>
         <List.Item style={{ marginBottom: '12px' }}>
           헷 66%, 헷 50% 등은 유전 모프가 아닌{' '}
@@ -28,8 +27,8 @@ function DescriptionList() {
           </span>
         </List.Item>
         <List.Item style={{ marginBottom: '12px' }}>
-          모프 리스트는 MorphMarket의 리스트와 모프 검증이 거의 완료된 것들을
-          위주로 넣었습니다.
+          모프 리스트는 MorphMarket의 리스트 일부와 모프 검증이 거의 완료된
+          것들을 위주로 넣었습니다.
         </List.Item>
         <List.Item style={{ marginBottom: '12px' }}>
           크레스티드 게코는 성별에 따라 확률이 달라지는 모프가 없습니다!
