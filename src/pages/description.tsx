@@ -19,7 +19,7 @@ function DescriptionList() {
         <List.Item style={{ marginBottom: '12px' }}>
           헷 66%, 헷 50% 등은 유전 모프가 아닌{' '}
           <span style={{ fontWeight: 'bold', color: '#228be6' }}>
-            확률을 나타내는 표기법
+            해당 개체가 모프를 가질 확률을 나타내는 표기법
           </span>
           으로{' '}
           <span style={{ fontWeight: 'bold', color: '#228be6' }}>
@@ -44,7 +44,7 @@ function DescriptionList() {
               인스타그램 DM
             </span>
           </a>{' '}
-          혹은 같은 톡방에 계시거나 카톡 친구가 되어있다면 편하게 질문 주세요:)
+          혹은 같은 톡방에 계시거나 카톡 친구가 되어있다면 편하게 말씀 주세요:)
         </List.Item>
         <List.Item style={{ fontWeight: 'bold', marginBottom: '12px' }}>
           <a href='https://toss.me/co0ki3' style={{ textDecoration: 'none' }}>
