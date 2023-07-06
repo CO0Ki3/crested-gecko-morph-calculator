@@ -4,6 +4,7 @@ export const RECESSIVE_MORPH_LIST = [
   { value: 'cc', label: '팬텀', group: '열성 모프' },
   { value: 'dd', label: '슈퍼 스트라이프', group: '열성 모프' },
   { value: 'ee', label: '블루 아이', group: '열성 모프' },
+  { value: 'jj', label: '초초', group: '열성 모프' },
 ];
 
 export const HETERO_RECESSIVE_MORPH_LIST = [
@@ -16,6 +17,7 @@ export const HETERO_RECESSIVE_MORPH_LIST = [
     group: '열성(헷) 모프',
   },
   { value: 'Ee', label: '헷 블루 아이', group: '열성(헷) 모프' },
+  { value: 'Jj', label: '헷 초초', group: '열성(헷) 모프' },
 ];
 
 export const INCOMPLETE_DOMINANT_MORPH_LIST = [
@@ -50,11 +52,13 @@ export const VALUE_TO_LABEL = {
   cc: '팬텀',
   dd: '슈퍼 스트라이프',
   ee: '블루 아이',
+  jj: '초초',
   Aa: '헷 아잔틱',
   Bb: '헷 패턴리스',
   Cc: '헷 팬텀',
   Dd: '헷 슈퍼 스트라이프',
   Ee: '헷 블루 아이',
+  Jj: '헷 초초',
   Ff: '릴리 화이트',
   Gg: '카푸치노',
   Hh: '소프트 스케일',
