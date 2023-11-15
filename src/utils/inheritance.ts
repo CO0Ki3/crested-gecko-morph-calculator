@@ -11,14 +11,14 @@ export function injectNoneGenes(
   const noneMaleGenes = femaleGenes
     .filter((value) => !upperMaleGenes.includes(value.toUpperCase()))
     .map((value) => {
-      return value[0].toUpperCase() < 'F'
+      return value[0].toUpperCase() < 'G'
         ? value.toUpperCase()
         : value.toLowerCase();
     });
   const noneFemaleGenes = maleGenes
     .filter((value) => !upperFemaleGenes.includes(value.toUpperCase()))
     .map((value) => {
-      return value[0].toUpperCase() < 'F'
+      return value[0].toUpperCase() < 'G'
         ? value.toUpperCase()
         : value.toLowerCase();
     });
