@@ -2,10 +2,12 @@ import { ArcElement, Chart, Legend, Tooltip } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Button } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import useGenesStore from '../../../../store/store';
 import ChildrenItem from './ChildrenItem';
 
 function ChildrenList() {
+  const { t } = useTranslation();
   const { result } = useGenesStore();
   const [isViewMore, setIsViewMore] = useState(false);
   Chart.register(ArcElement, Tooltip, Legend);
@@ -16,10 +18,11 @@ function ChildrenList() {
   Chart.register(ArcElement, Tooltip, Legend);
 
   useEffect(() => {
+    console.log(result);
     setIsViewMore(false);
     if (typeof result === 'undefined') return;
     if (result.length === 0) {
-      setLables(['노말']);
+      setLables([t('normal')]);
       setData([100]);
       setColor(['rgba(255, 99, 132']);
     } else {
@@ -28,8 +31,8 @@ function ChildrenList() {
           .filter((trait) => Number.parseFloat(trait.value) > 3)
           .map((filteredTrait) => {
             return filteredTrait.gene.length === 0
-              ? '노말'
-              : filteredTrait.gene.join(' ');
+              ? t('normal')
+              : filteredTrait.gene.map((gene) => t(gene)).join(' ');
           }),
       );
       setData(result.map((trait) => Number.parseFloat(trait.value)));
@@ -42,7 +45,7 @@ function ChildrenList() {
         ),
       );
     }
-  }, [result]);
+  }, [result, t]);
 
   return (
     <>
@@ -69,7 +72,7 @@ function ChildrenList() {
           marginBottom: `${isViewMore ? 0 : '30px'}`,
         }}
       >
-        {isViewMore ? '닫기' : '더보기'}
+        {isViewMore ? t('close') : t('more')}
       </Button>
       {typeof result === 'undefined'
         ? null

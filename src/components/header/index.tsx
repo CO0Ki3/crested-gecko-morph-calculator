@@ -1,4 +1,12 @@
+import { Select } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+
 function HeaderContents() {
+  const { t, i18n } = useTranslation();
+  const onChangeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <div
       style={{
@@ -8,9 +16,16 @@ function HeaderContents() {
         display: 'flex',
         alignItems: 'center',
         paddingLeft: '30px',
+        justifyContent: 'space-between',
+        paddingRight: '30px',
       }}
     >
-      크레스티드 게코 모프 계산기
+      {t('header')}
+      <Select
+        data={['kr', 'en']}
+        defaultValue='kr'
+        onSearchChange={onChangeLanguage}
+      />
     </div>
   );
 }

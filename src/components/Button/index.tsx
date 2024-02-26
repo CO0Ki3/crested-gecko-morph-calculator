@@ -1,4 +1,5 @@
 import { Button } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import { inheritance } from '../../utils/inheritance';
 
 function CalcButton({
@@ -17,6 +18,7 @@ function CalcButton({
     }[],
   ) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <Button
       radius='md'
@@ -26,7 +28,7 @@ function CalcButton({
         onClick();
       }}
     >
-      계산하기
+      {t('calculating')}
     </Button>
   );
 }

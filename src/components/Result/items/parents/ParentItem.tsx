@@ -1,10 +1,12 @@
 import { Badge, Card, Box, Image } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Normal from '../../../../static/노말.jpg';
 import flags from './flags';
 import { BADGE_BACKGROUND_COLORS } from '../../../../utils/badgeBackgroundColors';
 
 function ParentItem({ genes }: { genes: string[] }) {
+  const { t } = useTranslation();
   const [imageName, setImageName] = useState<string>('');
   useEffect(() => {
     if (genes.length === 0) return;
@@ -56,7 +58,7 @@ function ParentItem({ genes }: { genes: string[] }) {
           size='lg'
           key='노말'
         >
-          노말
+          {t('normal')}
         </Badge>
       ) : (
         genes.map((value) => (
@@ -71,7 +73,7 @@ function ParentItem({ genes }: { genes: string[] }) {
             size='lg'
             key={`${value}`}
           >
-            {value}
+            {t(value)}
           </Badge>
         ))
       )}

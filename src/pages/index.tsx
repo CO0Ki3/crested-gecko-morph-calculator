@@ -1,5 +1,6 @@
 import { Box, Container, Group } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import CalcButton from '../components/Button';
 import DropdownList from '../components/dropdownList';
 import Result from '../components/Result';
@@ -7,6 +8,7 @@ import useGenesStore from '../store/store';
 import { injectNoneGenes } from '../utils/inheritance';
 
 export default function Main() {
+  const { t } = useTranslation();
   const [maleGenes, setMaleGenes] = useState<string[]>([]);
   const [femaleGenes, setFemaleGenes] = useState<string[]>([]);
   const [wholeMaleGenes, setWholeMaleGenes] = useState<string[]>([]);
@@ -50,10 +52,10 @@ export default function Main() {
     >
       <Group position='apart' grow sx={{ marginBottom: '20px' }}>
         <Box sx={{ width: '100%' }}>
-          <DropdownList title='수컷' setGenes={setMaleGenes} />
+          <DropdownList title={t('male')} setGenes={setMaleGenes} />
         </Box>
         <Box sx={{ width: '100%' }}>
-          <DropdownList title='암컷' setGenes={setFemaleGenes} />
+          <DropdownList title={t('female')} setGenes={setFemaleGenes} />
         </Box>
       </Group>
       <Box sx={{ width: '100%' }}>

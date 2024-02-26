@@ -1,5 +1,6 @@
 import { Text, Transition } from '@mantine/core';
 import { useLayoutEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function ChildrenItem({
   result,
@@ -11,6 +12,7 @@ function ChildrenItem({
   }[];
   isViewMore: boolean;
 }) {
+  const { t } = useTranslation();
   const [isMount, setIsMount] = useState(false);
 
   useLayoutEffect(() => {
@@ -18,7 +20,7 @@ function ChildrenItem({
   }, [isViewMore]);
 
   return result.length === 0 ? (
-    <Text sx={{ padding: '30px 0' }}>노말 100%</Text>
+    <Text sx={{ padding: '30px 0' }}>{t('normal')} 100%</Text>
   ) : (
     <>
       {result.map((value, i) => (
@@ -35,8 +37,8 @@ function ChildrenItem({
               key={`${value.value}-${i + 1}`}
             >
               {value.gene.length === 0
-                ? '노말 '
-                : value.gene.map((gene) => `${gene} `)}
+                ? `${t('normal')} `
+                : value.gene.map((gene) => `${t(gene)} `)}
               {value.value}
             </Text>
           )}

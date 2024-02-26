@@ -6,6 +6,7 @@ import gothicOTF from './font/NanumGothic.otf';
 import gothicTTF from './font/NanumGothic.ttf';
 import gothicBoldOTF from './font/NanumGothicBold.otf';
 import gothicBoldTTF from './font/NanumGothicBold.ttf';
+import './translation/i18n';
 
 function FontProvider() {
   return (

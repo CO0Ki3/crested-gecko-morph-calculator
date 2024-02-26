@@ -36,7 +36,7 @@ export const BADGE_BACKGROUND_COLORS: { [key: string]: MantineGradient } = {
     to: '#F8E0C4',
     deg: 60,
   },
-  '햇 팬텀': {
+  '헷 팬텀': {
     from: '#C1AFAB',
     to: '#51362E',
     deg: 60,

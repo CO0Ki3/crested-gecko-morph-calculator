@@ -1,18 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { MultiSelect, SelectItem } from '@mantine/core';
-import {
-  RECESSIVE_MORPH_LIST,
-  HETERO_RECESSIVE_MORPH_LIST,
-  INCOMPLETE_DOMINANT_MORPH_LIST,
-  SUPER_INCOMPLETE_DOMINANT_MORPH_LIST,
-} from '../../utils/morph';
-
-const morphList = [
-  ...RECESSIVE_MORPH_LIST,
-  ...HETERO_RECESSIVE_MORPH_LIST,
-  ...INCOMPLETE_DOMINANT_MORPH_LIST,
-  ...SUPER_INCOMPLETE_DOMINANT_MORPH_LIST,
-];
+import useMorphList from '../../hooks/useMorphList';
 
 function DropdownList({
   title,
@@ -22,6 +10,7 @@ function DropdownList({
   setGenes: Dispatch<SetStateAction<string[]>>;
 }) {
   const [selectedMorph, setSelectedMorph] = useState<string[]>([]);
+  const morphList = useMorphList();
 
   const filteredData = (value: string, selected: boolean, item: SelectItem) =>
     !selected &&
