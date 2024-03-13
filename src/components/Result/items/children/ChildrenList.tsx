@@ -18,7 +18,6 @@ function ChildrenList() {
   Chart.register(ArcElement, Tooltip, Legend);
 
   useEffect(() => {
-    console.log(result);
     setIsViewMore(false);
     if (typeof result === 'undefined') return;
     if (result.length === 0) {
