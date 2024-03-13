@@ -18,7 +18,7 @@ function DropdownList({
       (morphName) => item.value.toUpperCase() === morphName.toUpperCase(),
     ) &&
     typeof item.label === 'string' &&
-    item.label.includes(value);
+    item.label.toUpperCase().includes(value.toUpperCase());
 
   useEffect(() => {
     setGenes(selectedMorph);
