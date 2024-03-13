@@ -1,7 +1,7 @@
 export const en = {
   en: {
     translation: {
-      'header': 'Crested Gekko Morph Calculator',
+      'header': 'Crested Gecko Morph Calculator',
       'what is morph': 'In that calculator, "morph" means ',
       'allele': 'inherited as an allele. ',
       'morph which cannot calc': 'Harlequin, pin, wall, etc. ',
@@ -16,7 +16,7 @@ export const en = {
       'list occurred by':
         "The Morph list mainly included some of MorphMarket's lists and those that have almost been verified.",
       'is not affected sex':
-        "Crested Gekko doesn't have a morph whose probability varies by gender.",
+        "Crested Gecko doesn't have a morph whose probability varies by gender.",
       'free to type it': '',
       'reporting': 'If you have any questions or add bugs and morphs, please ',
       'instagram': 'Instagram DM',
