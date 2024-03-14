@@ -6,7 +6,7 @@ export const en = {
       'allele': 'inherited as an allele. ',
       'morph which cannot calc': 'Harlequin, pin, wall, etc. ',
       'can not calc': 'Cannot be calculated.',
-      'if input nothing': 'If no value is entered, it is calculated as',
+      'if input nothing': 'If no value is entered, it is calculated as ',
       'normal': 'normal',
       'will be calc': '',
       'het is': 'Het 66%, Het 50%, etc. are not genetic morphs. ',
