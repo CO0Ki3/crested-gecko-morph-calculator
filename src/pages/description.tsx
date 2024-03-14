@@ -51,7 +51,7 @@ function DescriptionList() {
         <List.Item style={{ fontWeight: 'bold', marginBottom: '12px' }}>
           <a
             href={
-              i18n.language === 'en'
+              i18n.language === 'kr'
                 ? 'https://toss.me/co0ki3'
                 : 'https://www.buymeacoffee.com/co0ki3'
             }
