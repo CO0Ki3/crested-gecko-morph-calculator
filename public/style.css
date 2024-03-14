@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'nanum_gothic';
-  src: url('./font/NanumGothic.ttf') format('woff'),
+  src:
+    url('./font/NanumGothic.ttf') format('woff'),
     url('./font/NanumGothic.otf') format('truetype');
   font-style: normal;
   font-weight: normal;
@@ -8,12 +9,44 @@
 
 @font-face {
   font-family: 'nanum_gothic';
-  src: url('./font/NanumGothicBold.ttf') format('woff'),
+  src:
+    url('./font/NanumGothicBold.ttf') format('woff'),
     url('./font/NanumGothicBold.otf') format('truetype');
   font-style: normal;
   font-weight: bold;
 }
 
-html, body, ul, span, div {
+html,
+body,
+ul,
+span,
+div {
   font-family: 'nanum_gothic';
+}
+
+.header {
+  width: 100%;
+  border: 1px solid rgb(230, 230, 230);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+  .mantine-Header-root {
+    height: 4.5rem;
+    max-height: 4.5rem;
+  }
+}
+
+.mantine-List-item {
+  word-break: keep-all;
 }
