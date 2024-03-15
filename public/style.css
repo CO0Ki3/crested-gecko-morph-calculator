@@ -35,18 +35,6 @@ div {
   padding-right: 30px;
 }
 
-@media screen and (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-  }
-  .mantine-Header-root {
-    height: 4.5rem;
-    max-height: 4.5rem;
-  }
-}
-
 .mantine-List-item {
   word-break: keep-all;
 }
