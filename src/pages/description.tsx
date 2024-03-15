@@ -50,6 +50,8 @@ function DescriptionList() {
         </List.Item>
         <List.Item style={{ fontWeight: 'bold', marginBottom: '12px' }}>
           <a
+            target='_blank'
+            rel='noreferrer'
             href={
               i18n.language === 'kr'
                 ? 'https://toss.me/co0ki3'
