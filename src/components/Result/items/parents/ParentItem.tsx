@@ -41,7 +41,7 @@ function ParentItem({ genes }: { genes: string[] }) {
           <Box sx={{ width: '100%', maxHeight: '300px' }}>
             <Image
               src={genes.length === 0 ? Normal : flags[imageName]}
-              sx={{ width: '101%' }}
+              height={300}
             />
           </Box>
         </Box>
