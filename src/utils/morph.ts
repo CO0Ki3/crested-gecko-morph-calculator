@@ -25,6 +25,7 @@ export const INCOMPLETE_DOMINANT_MORPH_LIST = [
   { value: 'Hh', label: '카푸치노', group: '공우성 모프' },
   { value: 'Ii', label: '소프트 스케일', group: '공우성 모프' },
   { value: 'Jj', label: '세이블', group: '공우성 모프' },
+  { value: 'Kk', label: '하이포', group: '공우성 모프' },
 ];
 
 export const SUPER_INCOMPLETE_DOMINANT_MORPH_LIST = [
@@ -44,6 +45,7 @@ export const SUPER_INCOMPLETE_DOMINANT_MORPH_LIST = [
     group: '공우성(슈퍼폼) 모프',
   },
   { value: 'JJ', label: '슈퍼 세이블', group: '공우성(슈퍼폼) 모프' },
+  { value: 'KK', label: '슈퍼 하이포', group: '공우성(슈퍼폼) 모프' },
 ];
 
 export const VALUE_TO_LABEL = {
@@ -63,10 +65,12 @@ export const VALUE_TO_LABEL = {
   Hh: '카푸치노',
   Ii: '소프트 스케일',
   Jj: '세이블',
+  Kk: '하이포',
   GG: '슈퍼 릴리 화이트',
   HH: '슈퍼 카푸치노',
   II: '슈퍼 소프트 스케일',
   JJ: '슈퍼 세이블',
+  KK: '슈퍼 하이포',
 };
 
 export type LabelT = keyof typeof VALUE_TO_LABEL;
